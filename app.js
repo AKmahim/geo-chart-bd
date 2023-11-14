@@ -9,7 +9,7 @@
     // data and map.
     const data = [
         ['bd-da', 10], ['bd-kh', 11], ['bd-ba', 12], ['bd-cg', 13],
-        ['bd-sy', 14], ['bd-rj', 15], ['bd-rp', 16]
+        ['bd-sy', 14], ['bd-rj', 15], ['bd-rp', 16],['bd-cu',10]
     ];
 
     // Create the chart
