@@ -1,6 +1,5 @@
 
-// ====================== show district event on hover ===============
-
+// =========================================== click on district ==================
 const drawMap = async () => {
     try {
         const response = await fetch('districts.geojson');
@@ -32,18 +31,21 @@ const drawMap = async () => {
                 d3.select(this)
                     .style('fill', '#99ff99')
                     .style('transform', 'scale(1.02)');
-                const randomData = Math.floor(Math.random() * 100);
-                const districtName = d.target.__data__.properties.ADM2_EN;
-                tooltip.html(`<strong>${districtName}</strong><br>Event: ${randomData}`)
-                    .style('visibility', 'visible');
             })
+
+
             .on('mouseout', function () {
                 d3.select(this)
                     .style('fill', '#ccc')
                     .style('transform', 'scale(1)');
-                tooltip.style('visibility', 'hidden');
-            });
+            })
+            .on('click', function (d) {
+                const districtName = d.target.__data__.properties.ADM2_EN;
+                const loremIpsumData = `Our Meeting will held on ${districtName}`; // Replace this with your data
 
+                d3.select('#sidebar')
+                    .html(`<h2>${districtName}</h2><p>${loremIpsumData}</p>`);
+            });
         // Display district names
         svg.selectAll('text')
             .data(data.features)
@@ -65,11 +67,10 @@ const drawMap = async () => {
             .style('background-color', 'white')
             .style('border', '1px solid black')
             .style('padding', '5px');
+        // ... (remaining code for displaying district names, tooltip, etc.)
     } catch (error) {
         console.log(error);
     }
 };
 
 drawMap();
-
-
