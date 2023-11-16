@@ -4,7 +4,7 @@ const drawMap = async () => {
     try {
         const response = await fetch('districts.geojson');
         const data = await response.json();
-
+        console.log(data.features);
         const svg = d3.select('#map')
             .append('svg')
             .attr('width', 1200)
