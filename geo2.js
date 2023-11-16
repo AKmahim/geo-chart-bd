@@ -31,20 +31,23 @@ const drawMap = async () => {
                 d3.select(this)
                     .style('fill', '#99ff99')
                     .style('transform', 'scale(1.02)');
+                const randomData = Math.floor(Math.random() * 100);
+                const districtName = d.target.__data__.properties.ADM2_EN;
+                tooltip.html(`<strong>${districtName}</strong><br>Event: ${randomData}`)
+                    .style('visibility', 'visible');
             })
-
-
             .on('mouseout', function () {
                 d3.select(this)
                     .style('fill', '#ccc')
                     .style('transform', 'scale(1)');
+                tooltip.style('visibility', 'hidden');
             })
             .on('click', function (d) {
                 const districtName = d.target.__data__.properties.ADM2_EN;
                 const loremIpsumData = `Our Meeting will held on ${districtName}`; // Replace this with your data
 
                 d3.select('#sidebar')
-                    .html(`<h2>${districtName}</h2><p>${loremIpsumData}</p>`);
+                    .html(`<h2>${districtName}</h2><p>${loremIpsumData}</p><br><img src="https://d2mvzyuse3lwjc.cloudfront.net/doc/en/UserGuide/images/2D_B_and_W_Pie_Chart/2D_B_W_Pie_Chart_1.png?v=83139">`);
             });
         // Display district names
         svg.selectAll('text')
